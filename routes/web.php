@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+// Route::get('/home', [HomeController::class, 'home']);
+
+// Route::get('/home/{param1}/{param2}', [HomeController::class, 'homeWithParam']);
+
+// Route Group Controllers
+Route::controller(HomeController::class)->group(function() {
+    Route::get('/home', 'home');
+    Route::get('/home/{param1}/{param2}/{param3?}', 'homeWithParam');
+});
+
